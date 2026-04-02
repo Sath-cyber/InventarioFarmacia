@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class Medicamento
 {
     public int Id { get; set; }
-    public string Nombre { get; set; }
+    public string Nombre { get; set; } = "";
     public double Precio { get; set; }
     public int Cantidad { get; set; }
     public DateTime FechaDeVencimiento { get; set; }
@@ -34,7 +34,7 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    Console.WriteLine("Pendiente...");
+                    CrearMedicamento();
                     break;
                 case 2:
                     Console.WriteLine("Pendiente...");
@@ -47,5 +47,27 @@ class Program
                     break;
             }
         } while (opcion != 5);
+    }
+
+    static void CrearMedicamento()
+    {
+        Medicamento m = new Medicamento();
+
+        Console.Write("Nombre: ");
+        m.Nombre = Console.ReadLine();
+
+        Console.Write("Precio: ");
+        m.Precio = double.Parse(Console.ReadLine());
+
+        Console.Write("Cantidad: ");
+        m.Cantidad = int.Parse(Console.ReadLine());
+
+        Console.Write("Fecha de vencimiento (dd/MM/yyyy): ");
+        m.FechaDeVencimiento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+        m.Id = idActual++;
+        lista.Add(m);
+
+        Console.WriteLine("Medicamento Agreagado");
     }
 }
