@@ -39,7 +39,7 @@ class Program
                     MostrarMedicamentos();
                     break;
                 case 3:
-                    Console.WriteLine("Pendiente...");
+                    ActualizarMedicamento();
                     break;
                 case 4:
                     Console.WriteLine("Pendiente...");
@@ -88,5 +88,33 @@ class Program
             Console.WriteLine($"Cantidad: {m.Cantidad}");
             Console.WriteLine($"Fecha de vencimiento: {m.FechaDeVencimiento:dd/MM/yyyy}");
         }
+    }
+
+    static void ActualizarMedicamento()
+    {
+        Console.Write("Ingrese el ID del medicamento a actualizar: ");
+        int id = int.Parse(Console.ReadLine());
+
+        var medicamento = lista.Find(m => m.Id == id);
+
+        if (medicamento == null)
+        {
+            Console.WriteLine("Medicamento no encontrado");
+            return;
+        }
+
+        Console.Write("Nuevo nombre: ");
+        medicamento.Nombre = Console.ReadLine();
+
+        Console.WriteLine("Nuevo precio: ");
+        medicamento.Precio = double.Parse(Console.ReadLine());
+
+        Console.WriteLine("Nueva cantidad: ");
+        medicamento.Cantidad = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Nueva fecha de vencimiento (dd/MM/yyyy): ");
+        medicamento.FechaDeVencimiento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
+
+        Console.WriteLine("Datos actualizado exitosamente");
     }
 }
