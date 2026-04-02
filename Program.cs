@@ -8,7 +8,6 @@ class Medicamento
     public double Precio { get; set; }
     public int Cantidad { get; set; }
     public DateTime FechaDeVencimiento { get; set; }
-
 }
 
 class Program
@@ -37,7 +36,7 @@ class Program
                     CrearMedicamento();
                     break;
                 case 2:
-                    Console.WriteLine("Pendiente...");
+                    MostrarMedicamentos();
                     break;
                 case 3:
                     Console.WriteLine("Pendiente...");
@@ -68,6 +67,26 @@ class Program
         m.Id = idActual++;
         lista.Add(m);
 
-        Console.WriteLine("Medicamento Agreagado");
+        Console.WriteLine("Medicamento agregado");
+    }
+
+    static void MostrarMedicamentos()
+    {
+        if (lista.Count == 0)
+        {
+            Console.WriteLine("No hay medicamentos registrados");
+            return;
+        }
+
+        Console.WriteLine("Medicamentos registrados: ");
+
+        foreach (var m in lista)
+        {
+            Console.WriteLine($"ID: {m.Id}");
+            Console.WriteLine($"Nombre: {m.Nombre}");
+            Console.WriteLine($"Precio: {m.Precio}");
+            Console.WriteLine($"Cantidad: {m.Cantidad}");
+            Console.WriteLine($"Fecha de vencimiento: {m.FechaDeVencimiento:dd/MM/yyyy}");
+        }
     }
 }
